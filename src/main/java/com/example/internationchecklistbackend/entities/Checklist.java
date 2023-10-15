@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Checklist implements Serializable {
     public String id;
+    public String image;
     public String aircraft;
     public ChecklistSection[] sections;
 }
