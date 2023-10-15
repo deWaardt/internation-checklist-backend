@@ -16,7 +16,7 @@ public class ChecklistController {
     public ResponseEntity saveChecklist(@RequestBody Checklist checklist) {
         System.out.println(checklist);
 
-        try (FileOutputStream fileOut = new FileOutputStream("checklists\\"+checklist.id);
+        try (FileOutputStream fileOut = new FileOutputStream("checklists/"+checklist.id);
              ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
 
             // Write the object to the file
