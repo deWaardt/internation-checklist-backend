@@ -1,9 +1,20 @@
 package com.example.internationchecklistbackend.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
-public class ChecklistItem implements Serializable {
+@Entity
+@Getter
+@Setter
+public class ChecklistItem {
+    @Id
     public String id;
     public String text1;
     public String text2;
+
+    public int displayType;
 }

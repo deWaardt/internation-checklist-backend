@@ -1,9 +1,23 @@
 package com.example.internationchecklistbackend.entities;
 
-import java.io.Serializable;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
 
-public class ChecklistSection implements Serializable {
+import java.io.Serializable;
+import java.util.List;
+
+@Entity
+@Getter
+@Setter
+public class ChecklistSection {
+    @Id
     public String id;
     public String name;
-    public ChecklistItem[] items;
+
+    @OneToMany (cascade = {CascadeType.ALL})
+    public List<ChecklistItem> items;
 }
