@@ -84,4 +84,10 @@ public class ChecklistController {
 //        return ResponseEntity.ok(toReturn);
         return ResponseEntity.ok(checklistService.getAllChecklists());
     }
+
+    @DeleteMapping("/checklist/{id}")
+    public ResponseEntity deleteChecklist(@PathVariable String id) {
+        checklistService.deleteChecklist(checklistService.getChecklistById(id));
+        return ResponseEntity.ok().build();
+    }
 }

@@ -28,4 +28,8 @@ public class ChecklistService {
     public void saveChecklist(Checklist checklist) {
         checklistRepository.save(checklist);
     }
+
+    public void deleteChecklist(Checklist checklist) {
+        checklistRepository.delete(checklist);
+    }
 }
