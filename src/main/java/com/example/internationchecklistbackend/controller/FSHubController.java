@@ -1,5 +1,6 @@
 package com.example.internationchecklistbackend.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,10 +14,11 @@ public class FSHubController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/test")
-    public ResponseEntity test (@RequestBody Map<String, Object> json){
+    public ResponseEntity test (@RequestBody JsonNode jsonNode){
         System.out.println("Received: ");
         //System.out.println(json);
-        System.out.println(json.get("wind"));
+
+        System.out.println(jsonNode.get("_data"));
 
         return ResponseEntity.ok().build();
     }
