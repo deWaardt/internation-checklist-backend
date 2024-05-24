@@ -15,8 +15,8 @@ public class FSHubController {
     @PostMapping("/test")
     public ResponseEntity test (@RequestBody Map<String, Object> json){
         System.out.println("Received: ");
-        //System.out.println(json);
-        System.out.println(json.get("plan"));
+        System.out.println(json);
+        //System.out.println(json.get("plan"));
 
         return ResponseEntity.ok().build();
     }
