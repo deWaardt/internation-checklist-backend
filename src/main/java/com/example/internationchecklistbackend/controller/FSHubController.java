@@ -85,8 +85,6 @@ public class FSHubController {
         } else {
             return ResponseEntity.status(response.getStatusCode()).build();
         }
-
-        return ResponseEntity.ok().build();
     }
 
     @Bean
