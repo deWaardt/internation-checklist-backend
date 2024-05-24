@@ -16,7 +16,7 @@ public class FSHubController {
     public ResponseEntity test (@RequestBody Map<String, Object> json){
         System.out.println("Received: ");
         //System.out.println(json);
-        System.out.println(json.get("_type"));
+        System.out.println(json.get("_data"));
 
         return ResponseEntity.ok().build();
     }
