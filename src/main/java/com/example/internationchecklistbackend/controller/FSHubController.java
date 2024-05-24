@@ -18,7 +18,7 @@ public class FSHubController {
         System.out.println("Received: ");
         //System.out.println(json);
 
-        System.out.println(jsonNode.get("_data"));
+        System.out.println(jsonNode.get("_data").get("landing_rate"));
 
         return ResponseEntity.ok().build();
     }
