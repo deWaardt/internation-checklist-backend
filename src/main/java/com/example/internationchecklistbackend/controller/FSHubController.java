@@ -72,11 +72,6 @@ public class FSHubController {
         String windSpeed = jsonNode.get("_data").get("wind").get("speed").asText();
         String windDir = jsonNode.get("_data").get("wind").get("direction").asText();
 
-
-
-
-        //URL url = new URL("https://discord.com/api/webhooks/1243356327309475920/85XW8Dwz3MlvRwz5SjMM2udDi1Kc5zroMPmaCNG2oQCMzB6Cg5DnIQKWU9cfD2og7id-");
-
         WebClient webClient = WebClient.builder()
                 .baseUrl(internationWebhook)
                 .defaultHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE, org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
