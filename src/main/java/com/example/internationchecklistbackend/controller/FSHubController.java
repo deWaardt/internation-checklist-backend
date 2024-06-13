@@ -110,8 +110,8 @@ public class FSHubController {
 
         String depAirportICAO = jsonNode.get("_data" ).get("plan").get("departure").asText();
         String arrICAO = jsonNode.get("_data" ).get("plan").get("arrival").asText();
-        String flightNr = node2.get("_data").get("plan").get("flight_no").asText();
-        String cruiseAlt = node2.get("_data").get("plan").get("cruise_lvl").asText();
+        String flightNr = jsonNode.get("_data").get("plan").get("flight_no").asText();
+        String cruiseAlt = jsonNode.get("_data").get("plan").get("cruise_lvl").asText();
 
 
         ArrivalBody arr = new ArrivalBody();
