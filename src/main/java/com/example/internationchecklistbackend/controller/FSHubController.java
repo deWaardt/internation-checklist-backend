@@ -76,10 +76,10 @@ public class FSHubController {
         String windSpeed = jsonNode.get("_data").get("wind").get("speed").asText();
         String windDir = jsonNode.get("_data").get("wind").get("direction").asText();
 
-//        WebClient webClient = WebClient.builder()
-//                .baseUrl(internationWebhook)
-//                .defaultHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE, org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-//                .build();
+        WebClient webClient = WebClient.builder()
+                .baseUrl(internationWebhook)
+                .defaultHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE, org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+                .build();
 //
 //
 //        HttpClient client = HttpClient.newHttpClient();
