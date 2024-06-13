@@ -47,7 +47,11 @@ public class FSHubController {
         ObjectMapper tokenmapper = new ObjectMapper();
         JsonNode tokenInfo = tokenmapper.readTree(file);
 
-        System.out.println(tokenInfo.get("token"));
+        //System.out.println(tokenInfo.get("token"));
+
+        System.out.println("=================================");
+        System.out.println("=================================");
+        System.out.println("=================================");
         String xPilotToken = tokenInfo.get("token").asText();
         String internationWebhook = tokenInfo.get("internationWebhook").asText();
 
@@ -88,6 +92,8 @@ public class FSHubController {
 
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node2 = mapper.readTree(response2.body());
+
+        System.out.println(node2);
 
         String fuelOnDepart = node2.get("data").get("departure").get("fuel").asText();
         String fuelOnArr = node2.get("data").get("arrival").get("fuel").asText();
