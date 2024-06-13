@@ -38,9 +38,9 @@ public class FSHubController {
 
         //return ResponseEntity.ok().build();
 
-        //System.out.println("Received: ");
+        System.out.println("Received: ");
         //System.out.println(json);
-        //System.out.println(jsonNode);
+        System.out.println(jsonNode);
 
         File file = new File("tokeninfo.txt");
 
@@ -138,7 +138,7 @@ public class FSHubController {
         Embed embed = new Embed();
         embed.title = "Pilot Flight Completed";
         embed.author = author;
-        embed.description = "A [flight](https://fshub.io/flight/" + flightId + "/report) from (departure) to (arrival) has been completed!";
+        embed.description = "A [flight](https://fshub.io/flight/" + flightId + "/report) from "+depAirportName+" to "+arrAirportName+" has been completed!";
         embed.color = 15258703;
         embed.fields = fields;
 
