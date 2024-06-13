@@ -76,37 +76,42 @@ public class FSHubController {
         String windSpeed = jsonNode.get("_data").get("wind").get("speed").asText();
         String windDir = jsonNode.get("_data").get("wind").get("direction").asText();
 
-        WebClient webClient = WebClient.builder()
-                .baseUrl(internationWebhook)
-                .defaultHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE, org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-                .build();
+//        WebClient webClient = WebClient.builder()
+//                .baseUrl(internationWebhook)
+//                .defaultHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE, org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+//                .build();
+//
+//
+//        HttpClient client = HttpClient.newHttpClient();
+//        HttpRequest request = HttpRequest.newBuilder()
+//                .uri(URI.create("https://fshub.io/api/v3/flight/"+flightId))
+//                .header("X-Pilot-Token",xPilotToken)
+//                .build();
+//        HttpResponse<String> response2 = client.send(request, HttpResponse.BodyHandlers.ofString());
+//
+//
+//        ObjectMapper mapper = new ObjectMapper();
+//        JsonNode node2 = mapper.readTree(response2.body());
+//
+//        System.out.println(node2);
 
+//        String fuelOnDepart = node2.get("data").get("departure").get("fuel").asText();
+//        String fuelOnArr = node2.get("data").get("arrival").get("fuel").asText();
+//        String fuelBurnt = node2.get("data").get("fuel_used").asText();
+//        String flightNr = node2.get("data").get("plan").get("callsign").asText();
+//        String cruiseAlt = node2.get("data").get("plan").get("cruise_lvl").asText();
+//        String route = node2.get("data").get("plan").get("route").asText();
+//
+//        String depAirportName = node2.get("data").get("departure").get("name").asText();
+//        String depAirportICAO = node2.get("data").get("departure").get("icao").asText();
+//
+//        String arrAirportName = node2.get("data").get("arrival").get("name").asText();
+//        String arrICAO = node2.get("data").get("arrival").get("icao").asText();
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://fshub.io/api/v3/flight/"+flightId))
-                .header("X-Pilot-Token",xPilotToken)
-                .build();
-        HttpResponse<String> response2 = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode node2 = mapper.readTree(response2.body());
-
-        System.out.println(node2);
-
-        String fuelOnDepart = node2.get("data").get("departure").get("fuel").asText();
-        String fuelOnArr = node2.get("data").get("arrival").get("fuel").asText();
-        String fuelBurnt = node2.get("data").get("fuel_used").asText();
-        String flightNr = node2.get("data").get("plan").get("callsign").asText();
-        String cruiseAlt = node2.get("data").get("plan").get("cruise_lvl").asText();
-        String route = node2.get("data").get("plan").get("route").asText();
-
-        String depAirportName = node2.get("data").get("departure").get("name").asText();
-        String depAirportICAO = node2.get("data").get("departure").get("icao").asText();
-
-        String arrAirportName = node2.get("data").get("arrival").get("name").asText();
-        String arrICAO = node2.get("data").get("arrival").get("icao").asText();
+        String depAirportICAO = jsonNode.get("_data" ).get("plan").get("departure").asText();
+        String arrICAO = jsonNode.get("_data" ).get("plan").get("arrival").asText();
+        String flightNr = node2.get("_data").get("plan").get("flight_no").asText();
+        String cruiseAlt = node2.get("_data").get("plan").get("cruise_lvl").asText();
 
 
         ArrivalBody arr = new ArrivalBody();
@@ -119,11 +124,12 @@ public class FSHubController {
 
         RequestField field2 = new RequestField();
         field2.name = "Flight Plan";
-        field2.value = "🆔 Flight No: "+flightNr+" \n 🛫 Departure: "+depAirportName+" ("+depAirportICAO+") | 🛬 Arrival: "+arrAirportName+" ("+arrICAO+") \n 📊 Cruise Level: FL"+cruiseAlt+" \n 🗺️ Route: "+route;
+        //field2.value = "🆔 Flight No: "+flightNr+" \n 🛫 Departure: "+depAirportName+" ("+depAirportICAO+") | 🛬 Arrival: "+arrAirportName+" ("+arrICAO+") \n 📊 Cruise Level: FL"+cruiseAlt+" \n 🗺️ Route: "+route;
+        field2.value = "🆔 Flight No: "+flightNr+" \n 🛫 Departure: "+depAirportICAO+" | 🛬 Arrival: "+arrICAO+" \n 📊 Cruise Level: FL"+cruiseAlt;
 
         RequestField field3 = new RequestField();
         field3.name = "Aircraft";
-        field3.value = "🗺️ Name: " + aircraftname + " \n 🎨 Livery: " + livery + " \n 🎨 Tail: " + tailnr + " \n ⛽ Fuel on Departure: "+fuelOnDepart+"KG | 🚀 Fuel on Arrival: "+fuelOnArr+"KG | 🔥 Burned: "+fuelBurnt+"KG";
+        field3.value = "🗺️ Name: " + aircraftname + " \n 🎨 Livery: " + livery + " \n 🎨 Tail: " + tailnr;
 
         RequestField field4 = new RequestField();
         field4.name = "Landing information";
@@ -144,7 +150,7 @@ public class FSHubController {
         Embed embed = new Embed();
         embed.title = "Pilot Flight Completed";
         embed.author = author;
-        embed.description = "A [flight](https://fshub.io/flight/" + flightId + "/report) from "+depAirportName+" to "+arrAirportName+" has been completed!";
+        embed.description = "A [flight](https://fshub.io/flight/" + flightId + "/report) from "+depAirportICAO+" to "+arrICAO+" has been completed!";
         embed.color = 15258703;
         embed.fields = fields;
 
